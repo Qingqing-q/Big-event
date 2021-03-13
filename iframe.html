@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      a 链接的target属性值要是iframe的name值
+     -->
+    <a href="http://www.baidu.com" target="box">百度一下</a>
+    <a href="http://www.taobao.com" target="box">淘宝</a>
+    <a href="https://www.jd.com/" target="box">京东</a>
+
+    <br />
+    <br />
+    <br />
+    <iframe
+      width="1200"
+      height="800"
+      src="http://www.baidu.com"
+      frameborder="0"
+      name="box"
+    ></iframe>
+  </body>
+</html>

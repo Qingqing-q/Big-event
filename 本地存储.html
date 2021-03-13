@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+    <button>存储信息</button>
+    <button>获得信息</button>
+    <button>删除信息</button>
+    <button>删除所有信息</button>
+    <script>
+      let btn = document.querySelectorAll("button");
+
+      btn[0].onclick = function () {
+        let value = document.querySelector("input").value;
+        sessionStorage.setItem("value", value);
+      };
+
+      btn[1].onclick = function () {
+        console.log(sessionStorage.getItem("value"));
+      };
+
+      btn[2].onclick = function () {
+        sessionStorage.removeItem("value");
+      };
+
+      btn[3].onclick = function () {
+        sessionStorage.clear("value");
+      };
+    </script>
+  </body>
+</html>
