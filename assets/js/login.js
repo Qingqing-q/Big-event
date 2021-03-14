@@ -37,20 +37,18 @@ $(function () {
     let value = $(this).serialize(); // 获得表单中带有name属性的值
     // console.log(value);
     // 发送ajax请求
-    axios
-      .post("http://ajax.frontend.itheima.net/api/reguser", value)
-      .then(function (res) {
-        // console.log(res.data);
-        // 添加layer变量, 变量是layui里的layer
-        let layer = layui.layer;
-        if (res.data.status !== 0) {
-          // return alert(res.data.message);
-          return layer.msg(res.data.message);
-        }
-        // alert(res.data.message);
-        layer.msg(res.data.message);
-        $("#showLogin").click();
-      });
+    axios.post("/api/reguser", value).then(function (res) {
+      // console.log(res.data);
+      // 添加layer变量, 变量是layui里的layer
+      let layer = layui.layer;
+      if (res.data.status !== 0) {
+        // return alert(res.data.message);
+        return layer.msg(res.data.message);
+      }
+      // alert(res.data.message);
+      layer.msg(res.data.message);
+      $("#showLogin").click();
+    });
   });
 
   // =================== 获取注册表单内容 ===================
@@ -60,22 +58,26 @@ $(function () {
     // console.log(value);
 
     // 发送ajax请求
-    axios
-      .post("http://ajax.frontend.itheima.net/api/login", value)
-      .then(function (res) {
-        // console.log(res);
-        if (res.data.status !== 0) {
-          return layer.msg("登录失败");
-        }
+    axios.post("/api/login", value).then(function (res) {
+      // console.log(res);
+      if (res.data.status !== 0) {
+        return layer.msg("登录失败");
+      }
 
-        // console.log(res.data.token);
-        // 把token身份认证信息存储起来
-        localStorage.setItem("token", res.data.token);
+      // console.log(res.data.token);
+      // 把token身份认证信息存储起来
+      localStorage.setItem("token", res.data.token);
 
-        layer.msg("登录成功", function () {
+      layer.msg(
+        "登录成功",
+        {
+          time: 1000,
+        },
+        function () {
           // 跳转页面
           location.href = "/index.html";
-        });
-      });
+        }
+      );
+    });
   });
 });
